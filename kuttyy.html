@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise Rexuuu 💕</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+  font-family:'Segoe UI',Arial,sans-serif;
+  overflow:hidden;
+}
+
+.card{
+  background:#fff;
+  padding:28px;
+  border-radius:24px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,0.25);
+  width:340px;
+  animation:pop 1s ease;
+}
+
+@keyframes pop{
+  from{transform:scale(0.5);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+
+/* Cake + Candle */
+.cake{
+  font-size:90px;
+  position:relative;
+}
+.flame{
+  position:absolute;
+  top:-18px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:26px;
+  animation:flicker 0.25s infinite alternate;
+}
+@keyframes flicker{
+  to{transform:translateX(-50%) scale(1.25);}
+}
+
+h1{color:#ff4d6d;margin:8px 0;}
+#name{font-size:26px;color:#333;height:34px;}
+p{color:#555;}
+
+button{
+  margin:6px;
+  padding:10px 22px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:#fff;
+  font-size:15px;
+  cursor:pointer;
+}
+button:hover{background:#e63950;transform:scale(1.05);}
+
+/* Ring */
+.ring-box{
+  font-size:70px;
+  cursor:pointer;
+  animation:shake 1.5s infinite;
+  display:none;
+}
+@keyframes shake{
+  25%{transform:rotate(4deg);}
+  75%{transform:rotate(-4deg);}
+}
+
+/* Popup */
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+.popup-box{
+  background:#fff;
+  padding:25px;
+  border-radius:22px;
+  width:300px;
+  text-align:center;
+  animation:pop 0.6s ease;
+}
+
+/* Wishes */
+.wish{
+  position:fixed;
+  background:#fff;
+  padding:12px 18px;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  font-size:14px;
+  animation:floatWish 4s ease forwards;
+}
+@keyframes floatWish{
+  0%{transform:scale(0.4);opacity:0;}
+  20%{opacity:1;}
+  100%{transform:translateY(-120px);opacity:0;}
+}
+
+/* Hearts */
+.heart{
+  position:fixed;
+  bottom:-10px;
+  font-size:20px;
+  animation:float 5s linear forwards;
+}
+@keyframes float{
+  to{transform:translateY(-110vh);opacity:0;}
+}
+
+/* Love Letter */
+.love-letter{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.9);
+  color:#fff;
+  font-size:20px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:50px;
+  text-align:center;
+  overflow-y:hidden;
+  display:none;
+  flex-direction:column;
+  animation:fadeIn 1s ease forwards;
+}
+.love-letter p{
+  margin:0;
+  line-height:1.6;
+  animation:scrollLetter 25s linear forwards;
+}
+@keyframes scrollLetter{
+  0%{transform:translateY(100vh);}
+  100%{transform:translateY(-100vh);}
+}
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="cake">
+    🎂
+    <div class="flame" id="flame">🔥</div>
+  </div>
+
+  <h1>Happy Birthday</h1>
+  <div id="name"></div>
+
+  <p id="msg">Make a wish & blow the candle 😮‍💨🕯️</p>
+  <button onclick="blowCandle()">Oothu 😮‍💨</button>
+
+  <div class="ring-box" id="ringBox" onclick="openRing()">💍</div>
+  <p id="ringText" style="display:none;">Special gift for you 💖</p>
+</div>
+<!-- 🎧 AUDIO (UN VOICE) -->
+<audio id="voiceAudio" preload="auto">
+  <source src="sumi_voice.mp3" type="audio/mpeg">
+</audio>
+<!-- Proposal Popup -->
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <div style="font-size:80px;">💎💍</div>
+    <p>Rexuuu 💕<br>Will you be mine forever? 😍</p>
+    <button id="yesBtn">YES 💖</button>
+    <button id="noBtn">NO 🙈</button>
+  </div>
+</div>
+
+<!-- Love Letter Scroll -->
+<div class="love-letter" id="loveLetter">
+  <p>
+Rexuuu 💕,<br>
+Intha birthday-la naan un kooda irukka mudiyala 🙁🩵.
+naa unna  romba miss pannren kuttyy aama unakku theriya maattuthu🙁
+Nee en life-la irundhadhum, en heart full happiness, en dreams complete-aagudhu ✨ aptii solla aasatha aana aptii illa😏.
+Nee en life-la irundhadhum, en days bright-a irukku 🌟 nakkuthuu 😠appapotha apti feel panna vaikkira 0.01%tha enakku aptiii😶‍🌫️.
+i'm really broke<br><br>
+im not happyy ,this is not mee.<br><br>
+naa ippolaam ethuvume care pantrathu illa enakku antha privilege illanu nenaikkure.<br><br>
+nee enna paththiii enna nenachu vachurukkanuu ipoo konjoo naal la therunchukitten😊.<br><br>
+ipoo sonnathula ethuvumee gudd thimgs illala😅.<br><br>
+ethuvum mind pannikkaatha😘.<br><br>
+nee rompoo rompoo rompooooooooooooooooooooooooo nalla paiyanaa unga mummyy kku chamaththuu paiyanaa unnoda sis kuu gudd thampii uhh responsible boii uhh irukkaa😘.<br><br>
+azhagaa irukkaa neenu maskk poduu ellaru aproo unnatha paappaanga😏.<br><br>
+veedu kattunaatha ponnuu tharuvaangalaam enga mummyy daddyyy vegama vwwdu kattittu enna kattikko pahhh🥲🥲🥲🥲.<br><br>
+enmelayuu konjoo akkara kaami.<br><br>
+eppothu ethuu nenachuu worryy pannaatha . <br><br>
+neraiya irukku rexeee enakku solla aana athuu mudila .<br><br>
+yaartta sollanumnu therla enakku athuu ennodave pogattu😊.<br><br> 
+ammuu😘.<br><br>
+Aana naan unna romba miss panren.<br><br>
+Nee en life-la irundhadhum en heart full happiness 🫂<br>
+Distance namma love-a kuraikka mudiyala… daily naan unna miss panren.<br><br>
+      Un voice, un sirippu, un care ellamey enakku romba precious da 🫂<br><br>
+      Oru naal kandippa naan un munnadi iruppen… indha ellaa distance-um mudinjidum 💍<br><br>
+      Until then… indha letter-la en heart irukku ❤️.
+Happy Birthday da ❤️
+luvv yewww❤️💍. 
+Happy Birthday darling 💕.
+noo click pannee😹😹
+  </p>
+</div>
+<script>
+// Elements
+const nameBox = document.getElementById("name");
+const flame = document.getElementById("flame");
+const voice = document.getElementById("voiceAudio");
+const msg = document.getElementById("msg");
+const ringBox = document.getElementById("ringBox");
+const popup = document.getElementById("popup");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const loveLetter = document.getElementById("loveLetter");
+
+// Typing name
+const text="💕 Rexuuu 💕";
+let i=0;
+(function typeName(){
+  if(i<text.length){
+    nameBox.innerHTML+=text.charAt(i++);
+    setTimeout(typeName,120);
+  }
+})();
+
+function blowCandle(){
+  flame.style.display="none";
+  msg.innerHTML="kuttyyy wishh ennaa😹🐻😘";
+  ringBox.style.display="block";
+  document.getElementById("ringText").style.display="block";
+
+  // 🎧 UN VOICE – candle oothuna odane
+  voice.currentTime = 0;
+  voice.play().catch(err=>{
+    console.log("Audio blocked",err);
+  });
+}
+
+// Open ring
+function openRing(){
+  popup.style.display="flex";
+}
+
+// Wishes list
+const wishes=[
+  "Un smile pothum 😍",
+  "Always happy-aa irukkanum 💖",
+  "Dreams ellaam true aaganum ✨",
+  "Nee romba special 💕",
+  "Life full love & peace 😌",
+  "Rex = happiness 😎",
+  "Intha birthday unforgettable 🎂"
+];
+
+// YES click → wishes + hearts + love letter
+yesBtn.onclick = function(){
+  popup.style.display="none";
+
+  // Hearts burst
+  let heartInterval = setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  },300);
+
+  setTimeout(()=>clearInterval(heartInterval),10000);
+
+  // Wishes burst
+  for(let j=0;j<15;j++){
+    setTimeout(createWish,j*200);
+  }
+
+  // Show love letter after short delay
+  setTimeout(()=>{
+    loveLetter.style.display="flex";
+  },2000);
+};
+
+// Create wish function
+function createWish(){
+  let w=document.createElement("div");
+  w.className="wish";
+  w.innerHTML="💌 "+wishes[Math.floor(Math.random()*wishes.length)];
+  w.style.left=Math.random()*60+20+"vw";
+  w.style.top=Math.random()*60+20+"vh";
+  document.body.appendChild(w);
+  setTimeout(()=>w.remove(),4000);
+}
+
+// NO button funny escape
+noBtn.onmouseover = noBtn.onclick = function(){
+  let x = Math.random()*60 + 20;
+  let y = Math.random()*60 + 20;
+  noBtn.style.position = "absolute";
+  noBtn.style.left = x + "vw";
+  noBtn.style.top = y + "vh";
+
+  // Extra hearts
+  for(let i=0;i<5;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  }
+};
+
+// Click love letter to close
+loveLetter.onclick = function(){
+  loveLetter.style.display="none";
+};
+</script>
+
+</body>
+</html> 
